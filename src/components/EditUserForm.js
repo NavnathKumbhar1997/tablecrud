@@ -55,12 +55,12 @@ const EditUserForm = (props) => {
                     name="name"
                     rules={[{
                         required: true,
-                        message: "Enter your Name"
+                        message: "Name is Required"
                     }]}
                 >
                     <Input
                         type="text"
-                        placeholder="Name is required"
+                        placeholder="Enter your Name"
                     />
                 </Item>
                 <Item
@@ -68,12 +68,12 @@ const EditUserForm = (props) => {
                     name="age"
                     rules={[{
                         required: true,
-                        message: "Enter Your Age"
+                        message: "Age is required"
                     }]}
                 >
                     <Input
                         type="number"
-                        placeholder="Age is required"
+                        placeholder="Enter Your Age"
                     />
                 </Item>
                 <Item
@@ -81,12 +81,12 @@ const EditUserForm = (props) => {
                     name="address"
                     rules={[{
                         required: true,
-                        message: "Enter Your complete address"
+                        message: "Address is required"
                     }]}
                 >
                     <Input
                         type="text"
-                        placeholder="Address is required"
+                        placeholder="Enter Your complete address"
                     />
                 </Item>
                 <Item>
