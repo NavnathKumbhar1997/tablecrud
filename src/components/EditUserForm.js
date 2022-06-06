@@ -1,100 +1,115 @@
-import React, { createRef, useEffect } from 'react'
-import { Input, Button, Form } from 'antd';
+import React, { createRef, useEffect,useState } from "react";
+import { Input, Button, Form } from "antd";
 
-const {Item} = Form;
+const { Item } = Form;
 
 const EditUserForm = (props) => {
+   
+  const formRef = createRef();
 
-    const formRef = createRef();
+  const formSuccess = (datos) => {
+    datos.id = props.currentUser.id;
+    props.updateUser(datos);
+  };
 
-    const formSuccess = (datos) => {
-        datos.id = props.currentUser.id
-        props.updateUser(datos);
-    }
+  const formError = (error) => {
+    console.log(error);
+  };
 
-    const formError = (error) => {
-        console.log(error);
-    }
+  useEffect(() => {
+    formRef.current.setFieldsValue(props.currentUser);
+  });
 
-    useEffect(() => { 
-        formRef.current.setFieldsValue(props.currentUser); 
-    });
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 12,
+      },
+      sm: {
+        span: 8,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 4,
+      },
+      sm: {
+        span: 20,
+      },
+    },
+  };
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [address, setAddress] = useState('');
 
-    const formItemLayout = {
-        labelCol: {
-            xs: {
-                span: 12,
+  const [id, setID] = useState(null);
+
+  useEffect(() => {
+          setID(localStorage.getItem('id'))
+          setName(localStorage.getItem('name'));
+          setAge(localStorage.getItem('age'));
+          setAddress(localStorage.getItem('address'))
+  }, []);
+  
+
+  return (
+    <div>
+      <Form
+        name="form"
+        onFinish={formSuccess}
+        onError={formError}
+        ref={formRef}
+        {...formItemLayout}
+        style={{ maxWidth: 400 }}
+      >
+        <Item
+          label="Name: "
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: "Name is Required",
             },
-            sm: {
-                span: 8,
+          ]}
+        >
+          <Input placeholder='name' value={name} onChange={(e) => setName(e.target.value)}/>
+        </Item>
+        <Item
+          label="Age :"
+          name="age"
+          rules={[
+            {
+              required: true,
+              message: "Age is required",
             },
-        },
-        wrapperCol: {
-            xs: {
-                span: 4,
+          ]}
+        >
+          <Input placeholder='age' value={age} onChange={(e) => setAge(e.target.value)} />
+        </Item>
+        <Item
+          label="Address :"
+          name="address"
+          rules={[
+            {
+              required: true,
+              message: "Address is required",
             },
-            sm: {
-                span: 20, 
-            },
-        },
-    }
+          ]}
+        >
+          <Input placeholder='address' value={address} onChange={(e) => setAddress(e.target.value)}/>
+        </Item>
+        <Item>
+          <Button 
+            style={{ marginLeft: 50, marginRight: 50 }}
+            type="primary"
+            htmlType="submit"
+          >
+            Update
+          </Button>
+        </Item>
+      </Form>
+    </div>
+  );
+};
 
-    return (
-        <div>
-            <Form 
-                name="form"
-                onFinish={formSuccess}
-                onError={formError}
-                ref={formRef}
-                {...formItemLayout}
-                style={{maxWidth: 400}}
-                
-            >
-                <Item
-                    label="Name: "
-                    name="name"
-                    rules={[{
-                        required: true,
-                        message: "Name is Required"
-                    }]}
-                >
-                    <Input
-                        type="text"
-                        placeholder="Enter your Name"
-                    />
-                </Item>
-                <Item
-                    label="Age :"
-                    name="age"
-                    rules={[{
-                        required: true,
-                        message: "Age is required"
-                    }]}
-                >
-                    <Input
-                        type="number"
-                        placeholder="Enter Your Age"
-                    />
-                </Item>
-                <Item
-                    label="Address :"
-                    name="address"
-                    rules={[{
-                        required: true,
-                        message: "Address is required"
-                    }]}
-                >
-                    <Input
-                        type="text"
-                        placeholder="Enter Your complete address"
-                    />
-                </Item>
-                <Item>
-                    <Button style={{marginLeft: 50, marginRight: 50}} type="primary" htmlType="submit">Update</Button>
-                </Item>
-            </Form>
-        </div>
-    )
-}
-
-export default EditUserForm
+export default EditUserForm;

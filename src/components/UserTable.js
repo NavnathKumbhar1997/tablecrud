@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment,useState,useEffect } from "react";
 import { Table, Space, Button } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-
+import axios from "axios";
 
 const UserTable = (props) => {
   const columns = [
@@ -35,7 +35,7 @@ const UserTable = (props) => {
       title: "Action",
       key: "action",
       render: (text, record) => (
-        <Space size="middle">
+        <Space size="middle">   
           <Button
             onClick={() => {
               props.editUser(record);
@@ -61,9 +61,12 @@ const UserTable = (props) => {
   ];
 
   
+  
+  
   return (
     <Fragment>
       {props.users.length > 0 ? (
+        
         <Table
           dataSource={props.users}
           columns={columns}
@@ -72,9 +75,19 @@ const UserTable = (props) => {
           sticky
           pagination={true}
         />
+        
+
       ) : (
-        <p>There's no data around here</p>
+        <p>There's no data around here </p>
+          
       )}
+     
+       
+      
+  
+       
+     
+ 
     </Fragment>
   );
 };
