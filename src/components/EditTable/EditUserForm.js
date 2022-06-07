@@ -38,19 +38,6 @@ const EditUserForm = (props) => {
       },
     },
   };
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [address, setAddress] = useState('');
-
-  const [id, setID] = useState(null);
-
-  useEffect(() => {
-          setID(localStorage.getItem('id'))
-          setName(localStorage.getItem('name'));
-          setAge(localStorage.getItem('age'));
-          setAddress(localStorage.getItem('address'))
-  }, []);
-  
 
   return (
     <div>
@@ -61,6 +48,7 @@ const EditUserForm = (props) => {
         ref={formRef}
         {...formItemLayout}
         style={{ maxWidth: 400 }}
+        
       >
         <Item
           label="Name: "
@@ -72,7 +60,7 @@ const EditUserForm = (props) => {
             },
           ]}
         >
-          <Input placeholder='name' value={name} onChange={(e) => setName(e.target.value)}/>
+          <Input placeholder='name'/>
         </Item>
         <Item
           label="Age :"
@@ -84,7 +72,7 @@ const EditUserForm = (props) => {
             },
           ]}
         >
-          <Input placeholder='age' value={age} onChange={(e) => setAge(e.target.value)} />
+          <Input placeholder='age'/>
         </Item>
         <Item
           label="Address :"
@@ -96,7 +84,7 @@ const EditUserForm = (props) => {
             },
           ]}
         >
-          <Input placeholder='address' value={address} onChange={(e) => setAddress(e.target.value)}/>
+          <Input placeholder='address' />
         </Item>
         <Item>
           <Button 

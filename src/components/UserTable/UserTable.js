@@ -43,13 +43,13 @@ const UserTable = (props) => {
             type={"primary"}
             size={"small"}
           >
-            <EditOutlined style={{ fontSize: "15px" }} />
+            <EditOutlined style={{ fontSize: "15px",marginRight:"5px",padding:"10px" }} />
           </Button>
           <Button
             onClick={() => {
               props.deleteUser(record.id);
             }}
-            type={"primary"}
+            type={"danger"}
             size={"small"}
             danger
           >

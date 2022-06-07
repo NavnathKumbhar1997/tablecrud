@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import UserTable from "./components/UserTable";
-import UserForm from "./components/UserForm";
-import EditUserForm from "./components/EditUserForm";
-import GetData from "./components/GetData";
+import UserTable from "./components/UserTable/UserTable";
+import UserForm from "./components/UserForm/UserForm";
+import EditUserForm from "./components/EditTable/EditUserForm";
+import GetData from "./components/UserTable/GetData";
 import { Layout, Row, Col, Table } from "antd";
 import "antd/dist/antd.css";
 import { v4 as uuidv4 } from "uuid";
-import ShowData from "./components/ShowData";
-import Update from "./components/Update";
-function App() {
+import ShowData from "./components/UserTable/ShowData";
+import Update from "./components/EditTable/Update";
+import axios from "axios";
+function App(props) {
   const { Header, Footer, Content } = Layout;
 
   const dataSource = [
@@ -41,43 +42,6 @@ function App() {
     address: null,
   });
 
-  const addUser = (user) => {
-    user.id = uuidv4();
-    setUsers([...users, user]);
-  };
-
-  const editUser = (user) => {
-    setEditing(true);
-    setCurrentUser({
-      id: user.id,
-      name: user.name,
-      age: user.age,
-      address: user.address,
-    });
-  };
-
-  const updateUser = (user) => {
-    setEditing(false);
-    setUsers( 
-      users.map((val) => {
-        return val.id === user.id ? user : val;
-      })
-    );
-  };
-//   const updateAPIData = () => {
-//     axios.put(`http://localhost:8001/updateUserData/:id`, {
-//         name,
-//          age,
-//          address
-// 	})
-// }
-
-  const deleteUser = (id) => {
-    const usersFiltered = users.filter((item, i) => {
-      return item.id !== id;
-    });
-    setUsers(usersFiltered);
-  };
 
   return (
     <Layout>
@@ -94,14 +58,14 @@ function App() {
                 <h2>Edit User</h2>
                 <EditUserForm
                   setEditing={setEditing}
-                  updateUser={updateUser}
+                 
                   currentUser={currentUser}
                 />
               </div>
             ) : (
               <div>
                 <h2>Add User</h2>
-                <UserForm addUser={addUser} />
+                <UserForm />
               </div>
             )}
           </Col>
@@ -112,9 +76,9 @@ function App() {
               deleteUser={deleteUser}
               editUser={editUser}
             /> */}
-            <ShowData/>
-              {/* <GetData/> */}
-              {/* <Update/> */}
+            {/* <ShowData/> */}
+              <GetData/>
+              <Update/>
           </Col>
         </Row>
       </Content>
