@@ -1,71 +1,42 @@
-import React, { createRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Input, Button, Form } from "antd";
-import axios from "axios";
-import api from "../../services/api";
+import UserFormLogic from "./UserFormLogic";
+import UpdateLogic from "../EditTable/UpdateLogic";
 
 const { Item } = Form;
 
-const UserForm = (props) => {
-  const [name, setName] = useState();
-  const [age, setAge] = useState();
-  const [address, setAddress] = useState();
+const UserForm = () => {
 
-  const formRef = createRef();
+  let {
+    resetFields,
+    formSuccess,
+    postData,
+    nameField,
+    formError,
+    formItemLayout,
+    setAge,setAddress,
+    disabled
+  } = UserFormLogic();
 
-  const resetFields = () => {
-    formRef.current.resetFields();
-  };
 
-  const formSuccess = (datos) => {
-    props.addUser(datos);
-  };
-
-  useEffect(() => {
-    // formRef.current.resetFields();;
-  });
-
-  const formError = (error) => {
-    console.log(error);
-  };
-
-  // insert data
-  const postData = () => {
-    axios.post(`http://localhost:8001/addusers`, {
+  let {
       name,
-      age,
-      address,
-    });
-    formRef.current.resetFields();
-  };
-  const nameField = (e) => {
-    setName(e.target.value);
-  };
-
-  const formItemLayout = {
-    labelCol: {
-      xs: {
-        span: 12,
-      },
-      sm: {
-        span: 8,
-      },
-    },
-    wrapperCol: {
-      xs: {
-        span: 4,
-      },
-      sm: {
-        span: 20,
-      },
-    },
-  };
+      age,address,
+      updateData,
+      formValues,
+    setFormValues,
+    handleChange,
+    handleSubmit,
+    
+    } = UpdateLogic();
+  
 
   return (
     <div>
+   
       <Form
         name="form"
         onError={formError}
-        ref={formRef}
         {...formItemLayout}
         style={{ maxWidth: 400 }}
       >
@@ -83,7 +54,6 @@ const UserForm = (props) => {
             type="text"
             placeholder="Enter Your Name"
             value={name}
-            onChange={nameField}
           />
         </Item>
         <Item
@@ -100,8 +70,7 @@ const UserForm = (props) => {
             type="number"
             placeholder="Enter your age"
             value={age}
-            onChange={(e) => setAge(e.target.value)}
-          />
+                      />
         </Item>
         <Item
           label="Address :"
@@ -117,10 +86,10 @@ const UserForm = (props) => {
             type="text"
             placeholder="Enter completed address"
             value={address}
-            onChange={(e) => setAddress(e.target.value)}
           />
         </Item>
         <Item>
+        {disabled === true ? (
           <Button
             style={{ marginLeft: 50, marginRight: 50 }}
             type="primary"
@@ -128,12 +97,23 @@ const UserForm = (props) => {
             onClick={postData}
           >
             Add
+          </Button>):(
+            <Button
+            style={{ marginLeft: 50, marginRight: 50 }}
+            type="primary"
+            htmlType="submit"
+            onClick={updateData}
+          >
+            Update
           </Button>
+          )}
           <Button type="default" onClick={resetFields}>
             Reset
           </Button>
+         
         </Item>
       </Form>
+    
     </div>
   );
   

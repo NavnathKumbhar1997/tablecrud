@@ -1,47 +1,11 @@
-import React, { useState } from "react";
-import UserTable from "./components/UserTable/UserTable";
-import UserForm from "./components/UserForm/UserForm";
-import EditUserForm from "./components/EditTable/EditUserForm";
-import GetData from "./components/UserTable/GetData";
-import { Layout, Row, Col, Table } from "antd";
+import React from "react";
+import { Layout, Row} from "antd";
 import "antd/dist/antd.css";
-import { v4 as uuidv4 } from "uuid";
-import ShowData from "./components/UserTable/ShowData";
-import Update from "./components/EditTable/Update";
-import axios from "axios";
+import EmployeeDesign from "./components/Employee/EmployeeDesign";
+
 function App(props) {
-  const { Header, Footer, Content } = Layout;
 
-  const dataSource = [
-    {
-      id: uuidv4(),
-      name: "Navanth",
-      age: 25,
-      address: "Pune Maharashtra",
-    },
-    {
-      id: uuidv4(),
-      name: "Kirtiraj",
-      age: 26,
-      address: "Anand Gujarat",
-    },
-    {
-      id: uuidv4(),
-      name: "Raj",
-      age: 24,
-      address: "Hydrabad",
-    },
-  ];
-
-  const [users, setUsers] = useState(dataSource);
-  const [editing, setEditing] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    id: null,
-    name: "",
-    age: null,
-    address: null,
-  });
-
+  let { Header , Content , Footer } = Layout
 
   return (
     <Layout>
@@ -49,38 +13,9 @@ function App(props) {
         <h1 style={{ color: "white" }}>My First Crud</h1>
       </Header>
       <Content>
-        <br />
-        <br />
-        <Row justify="space-around">
-          <Col xs={20} sm={14} md={12} lg={8}>
-            {editing ? (
-              <div>
-                <h2>Edit User</h2>
-                <EditUserForm
-                  setEditing={setEditing}
-                 
-                  currentUser={currentUser}
-                />
-              </div>
-            ) : (
-              <div>
-                <h2>Add User</h2>
-                <UserForm />
-              </div>
-            )}
-          </Col>
-          <Col xs={20} sm={20} md={16} lg={12}>
-            <h2>View Users</h2>
-            {/* <UserTable
-              users={users}
-              deleteUser={deleteUser}
-              editUser={editUser}
-            /> */}
-            {/* <ShowData/> */}
-              <GetData/>
-              <Update/>
-          </Col>
-        </Row>
+       
+          <EmployeeDesign/>
+      
       </Content>
 
       <Footer></Footer>
