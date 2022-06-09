@@ -17,30 +17,71 @@ const EmployeeDesign = () => {
     setName,
     age,
     setAge,
-    empAddress,
+    address,
     setEmpAddress,
+    isEdit,
+      setIsEdit,
   } = EmployeeLogic();
 
   return (
     <>
       <Row>
         <Col>
-          <Button type={"primary"} onClick={showModal}>
+          <Button
+            type={"primary"}
+            onClick={showModal}
+            style={{ margin: "20px" }}
+          >
             Add
           </Button>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Table columns={tblHeader} dataSource={tblData} />
+          <Table
+            columns={tblHeader}
+            dataSource={tblData}
+            style={{ marginLeft: "20px" }}
+          />
         </Col>
         <Modal
-          title="Basic Modal"
+          title={isEdit ? "Update Data" : "Add New Data"}
           visible={isModalVisible}
           onOk={handleOk}
+          okText={isEdit ? "Update":"Save"}
           onCancel={handleCancel}
         >
-          <Form
+          <div>
+            <Input
+              label="Name"
+              value={name}
+              name="name"
+              placeholder="Enter Your Name"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              style={{ margin: "5px" }}
+            />
+            <Input
+              value={age}
+              name="age"
+              placeholder="Enter Your age"
+              onChange={(e) => {
+                setAge(e.target.value);
+              }}
+              style={{ margin: "5px" }}
+            />
+            <Input
+              value={address}
+              name="address"
+              placeholder="Enter Your address"
+              onChange={(e) => {
+                setEmpAddress(e.target.value);
+              }}
+              style={{ margin: "5px" }}
+            />
+          </div>
+          {/* <Form
             name="basic"
             labelCol={{
               span: 8,
@@ -65,7 +106,7 @@ const EmployeeDesign = () => {
                 },
               ]}
             >
-              <Input value={name}  onChange={(e)=>{setName(e.target.value)}}/>
+              <Input value={name} name="name"  onChange={(e)=>{setName(e.target.value)}}/>
             </Form.Item>
             <Form.Item
               label="Age"
@@ -77,7 +118,7 @@ const EmployeeDesign = () => {
                 },
               ]}
             >
-              <Input value={age}  onChange={(e)=>{setAge(e.target.value)}}/>
+              <Input value={age} name="age"  onChange={(e)=>{setAge(e.target.value)}}/>
             </Form.Item>
             <Form.Item
               label="Address"
@@ -90,11 +131,12 @@ const EmployeeDesign = () => {
               ]}
             >
               <Input
-                value={empAddress}
+                value={address}
+                name="address"
               onChange={(e)=>{setEmpAddress(e.target.value)}}
               />
             </Form.Item>
-          </Form>
+          </Form> */}
         </Modal>
       </Row>
     </>
