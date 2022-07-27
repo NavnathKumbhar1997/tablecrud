@@ -9,8 +9,12 @@ const EmployeeLogic = () => {
   const [tblData, setTblData] = useState([]);
   const [id, setId] = useState();
   const [name, setName] = useState();
+  const [vaccineName,setVaccineName]=useState();
+  const [vaccineNumber,setVaccineNumber] = useState();
   const [age, setAge] = useState();
   const [address, setEmpAddress] = useState();
+  const [FVaccineDate, setFVaccineDate] = useState();
+  const [SVaccineDate, setSVaccineDate] = useState();
 
   //below state used to set edit mode on click
   const [isEdit, setIsEdit] = useState(false);
@@ -18,6 +22,7 @@ const EmployeeLogic = () => {
   useEffect(() => {
     handler.get("displayData",{}).then((response) => {
       setTblData(response.data);
+      console.log(response);
     })
   }, []);
 
@@ -33,6 +38,7 @@ const EmployeeLogic = () => {
       name,
       age,
       address,
+      vaccineName,vaccineNumber,FVaccineDate,SVaccineDate
     });
   };
   const updateData = () => {
@@ -41,6 +47,8 @@ const EmployeeLogic = () => {
       name: name,
       address,
       age: age,
+      vaccineName:vaccineName,vaccineNumber:vaccineNumber,
+      FVaccineDate:FVaccineDate,SVaccineDate:SVaccineDate
     };
     updateEmp(rec);
   };
@@ -101,14 +109,29 @@ const EmployeeLogic = () => {
       key: "name",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Vaccine Name",
+      dataIndex: "Vaccine Name",
+      key: "vaccineName",
+    },
+    {
+      title: "Vaccine No",
+      dataIndex: "Vaccine No",
+      key: "Vaccine No",
     },
     {
       title: "Address",
       dataIndex: "address",
       key: "address",
+    },
+    {
+      title: "first Vaccine Date",
+      dataIndex: "first Vaccine Date",
+      key: "first Vaccine Date",
+    },
+    {
+      title: "second Vaccine Date",
+      dataIndex: "second Vaccine Date",
+      key: "addsecond Vaccine Dateress",
     },
     {
       title: "Action",
@@ -152,6 +175,8 @@ const EmployeeLogic = () => {
     tblHeader,
     isModalVisible,
     isEdit,
+    vaccineName,vaccineNumber,FVaccineDate,SVaccineDate,setVaccineName,setVaccineNumber,
+    setFVaccineDate,setSVaccineDate,
     setIsEdit,
     showModal,
     setTblData,

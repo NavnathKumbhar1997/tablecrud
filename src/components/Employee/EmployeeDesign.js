@@ -20,6 +20,8 @@ const EmployeeDesign = () => {
     address,
     setEmpAddress,
     isEdit,
+    vaccineName,vaccineNumber,FVaccineDate,SVaccineDate,setVaccineName,setVaccineNumber,
+    setFVaccineDate,setSVaccineDate,
       setIsEdit,
   } = EmployeeLogic();
 
@@ -56,16 +58,26 @@ const EmployeeDesign = () => {
               label="Name"
               value={name}
               name="name"
-              placeholder="Enter Your Name"
+              placeholder="Enter Employee Name"
               onChange={(e) => {
                 setName(e.target.value);
               }}
               style={{ margin: "5px" }}
             />
             <Input
-              value={age}
+              label="Name"
+              value={vaccineName}
+              name="name"
+              placeholder="Enter Vaccine Name"
+              onChange={(e) => {
+                setVaccineName(e.target.value);
+              }}
+              style={{ margin: "5px" }}
+            />
+            <Input
+              value={vaccineNumber}
               name="age"
-              placeholder="Enter Your age"
+              placeholder="Enter vaccine Number"
               onChange={(e) => {
                 setAge(e.target.value);
               }}
@@ -74,69 +86,32 @@ const EmployeeDesign = () => {
             <Input
               value={address}
               name="address"
-              placeholder="Enter Your address"
+              placeholder="Enter Address"
+              onChange={(e) => {
+                setEmpAddress(e.target.value);
+              }}
+              style={{ margin: "5px" }}
+            />
+            <Input
+              value={FVaccineDate}
+              name="address"
+              placeholder="Enter First Vaccine Date"
+              onChange={(e) => {
+                setEmpAddress(e.target.value);
+              }}
+              style={{ margin: "5px" }}
+            />
+            <Input
+              value={SVaccineDate}
+              name="address"
+              placeholder="Enter Second Vaccine Date"
               onChange={(e) => {
                 setEmpAddress(e.target.value);
               }}
               style={{ margin: "5px" }}
             />
           </div>
-          {/* <Form
-            name="basic"
-            labelCol={{
-              span: 8,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-          >
-            <Form.Item
-              label="Name"
-              name="text"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your name!",
-                },
-              ]}
-            >
-              <Input value={name} name="name"  onChange={(e)=>{setName(e.target.value)}}/>
-            </Form.Item>
-            <Form.Item
-              label="Age"
-              name="number"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your age!",
-                },
-              ]}
-            >
-              <Input value={age} name="age"  onChange={(e)=>{setAge(e.target.value)}}/>
-            </Form.Item>
-            <Form.Item
-              label="Address"
-              name="textt"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your address!",
-                },
-              ]}
-            >
-              <Input
-                value={address}
-                name="address"
-              onChange={(e)=>{setEmpAddress(e.target.value)}}
-              />
-            </Form.Item>
-          </Form> */}
+          
         </Modal>
       </Row>
     </>
