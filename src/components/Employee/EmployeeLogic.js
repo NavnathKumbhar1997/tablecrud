@@ -9,12 +9,12 @@ const EmployeeLogic = () => {
   const [tblData, setTblData] = useState([]);
   const [id, setId] = useState();
   const [name, setName] = useState();
-  const [vaccineName,setVaccineName]=useState();
-  const [vaccineNumber,setVaccineNumber] = useState();
+  const [VaccineName,setVaccineName]=useState();
+  // const [vaccineNumber,setVaccineNumber] = useState();
   const [age, setAge] = useState();
   const [address, setEmpAddress] = useState();
-  const [FVaccineDate, setFVaccineDate] = useState();
-  const [SVaccineDate, setSVaccineDate] = useState();
+  const [firstVaccineDate, setFVaccineDate] = useState();
+  const [secondVaccineDate, setSVaccineDate] = useState();
 
   //below state used to set edit mode on click
   const [isEdit, setIsEdit] = useState(false);
@@ -38,7 +38,7 @@ const EmployeeLogic = () => {
       name,
       age,
       address,
-      vaccineName,vaccineNumber,FVaccineDate,SVaccineDate
+      VaccineName,firstVaccineDate,secondVaccineDate
     });
   };
   const updateData = () => {
@@ -47,8 +47,8 @@ const EmployeeLogic = () => {
       name: name,
       address,
       age: age,
-      vaccineName:vaccineName,vaccineNumber:vaccineNumber,
-      FVaccineDate:FVaccineDate,SVaccineDate:SVaccineDate
+      VaccineName:VaccineName,
+      firstVaccineDate:firstVaccineDate,secondVaccineDate:secondVaccineDate
     };
     updateEmp(rec);
   };
@@ -81,11 +81,17 @@ const EmployeeLogic = () => {
         name: rec.name,
         age: rec.age,
         address: rec.address,
+        VaccineName:rec.VaccineName,
+        firstVaccineDate:rec.firstVaccineDate,
+        secondVaccineDate:rec.secondVaccineDate
       }).catch((ex) => console.error(ex.toJSON()));
     setId(rec.id);
     setName(rec.name);
+    setVaccineName(rec.VaccineName)
     setAge(rec.age);
     setEmpAddress(rec.address);
+    setFVaccineDate(rec.firstVaccineDate)
+    setSVaccineDate(rec.secondVaccineDate)
     getData();
     return updateEmp.data;
   };
@@ -110,13 +116,13 @@ const EmployeeLogic = () => {
     },
     {
       title: "Vaccine Name",
-      dataIndex: "Vaccine Name",
+      dataIndex: "VaccineName",
       key: "vaccineName",
     },
     {
       title: "Vaccine No",
-      dataIndex: "Vaccine No",
-      key: "Vaccine No",
+      dataIndex: "age",
+      key: "age",
     },
     {
       title: "Address",
@@ -125,12 +131,12 @@ const EmployeeLogic = () => {
     },
     {
       title: "first Vaccine Date",
-      dataIndex: "first Vaccine Date",
+      dataIndex: "firstVaccineDate",
       key: "first Vaccine Date",
     },
     {
       title: "second Vaccine Date",
-      dataIndex: "second Vaccine Date",
+      dataIndex: "secondVaccineDate",
       key: "addsecond Vaccine Dateress",
     },
     {
@@ -145,8 +151,11 @@ const EmployeeLogic = () => {
               console.log(record);
               setId(record.id);
               setName(record.name);
+              setVaccineName(record.VaccineName)
               setAge(record.age);
               setEmpAddress(record.address);
+              setFVaccineDate(record.firstVaccineDate);
+              setSVaccineDate(record.secondVaccineDate);
             }}
             type={"primary"}
             size={"small"}
@@ -175,7 +184,7 @@ const EmployeeLogic = () => {
     tblHeader,
     isModalVisible,
     isEdit,
-    vaccineName,vaccineNumber,FVaccineDate,SVaccineDate,setVaccineName,setVaccineNumber,
+    VaccineName,firstVaccineDate,secondVaccineDate,setVaccineName,
     setFVaccineDate,setSVaccineDate,
     setIsEdit,
     showModal,

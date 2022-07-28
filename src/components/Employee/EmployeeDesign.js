@@ -20,7 +20,7 @@ const EmployeeDesign = () => {
     address,
     setEmpAddress,
     isEdit,
-    vaccineName,vaccineNumber,FVaccineDate,SVaccineDate,setVaccineName,setVaccineNumber,
+    VaccineName,firstVaccineDate,secondVaccineDate,setVaccineName,
     setFVaccineDate,setSVaccineDate,
       setIsEdit,
   } = EmployeeLogic();
@@ -66,7 +66,7 @@ const EmployeeDesign = () => {
             />
             <Input
               label="Name"
-              value={vaccineName}
+              value={VaccineName}
               name="name"
               placeholder="Enter Vaccine Name"
               onChange={(e) => {
@@ -75,7 +75,7 @@ const EmployeeDesign = () => {
               style={{ margin: "5px" }}
             />
             <Input
-              value={vaccineNumber}
+              value={age}
               name="age"
               placeholder="Enter vaccine Number"
               onChange={(e) => {
@@ -93,20 +93,20 @@ const EmployeeDesign = () => {
               style={{ margin: "5px" }}
             />
             <Input
-              value={FVaccineDate}
+              value={firstVaccineDate}
               name="address"
               placeholder="Enter First Vaccine Date"
               onChange={(e) => {
-                setEmpAddress(e.target.value);
+                setFVaccineDate(e.target.value);
               }}
               style={{ margin: "5px" }}
             />
             <Input
-              value={SVaccineDate}
+              value={secondVaccineDate}
               name="address"
               placeholder="Enter Second Vaccine Date"
               onChange={(e) => {
-                setEmpAddress(e.target.value);
+                setSVaccineDate(e.target.value);
               }}
               style={{ margin: "5px" }}
             />
